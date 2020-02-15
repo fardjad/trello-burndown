@@ -22,5 +22,7 @@ if (cluster.isMaster) {
     });
   }
 } else {
-  start(HOST, PORT);
+  (async () => {
+    await start(HOST, PORT);
+  })();
 }
