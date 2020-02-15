@@ -1,0 +1,14 @@
+{
+  "dev": {
+    "driver": "sqlite3",
+    "filename": { "ENV": "DB_FILE" }
+  },
+  "test": {
+    "driver": "sqlite3",
+    "filename": ":memory:"
+  },
+  "prod": {
+    "driver": "sqlite3",
+    "filename": { "ENV": "DB_FILE" }
+  }
+}
