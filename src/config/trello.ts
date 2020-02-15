@@ -8,3 +8,4 @@ if (process.env.TRELLO_API_TOKEN == null) {
 
 export const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
 export const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
+export const TRELLO_ACTIONS_LIMIT = 1000;

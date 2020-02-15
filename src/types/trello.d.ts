@@ -18,7 +18,13 @@ export interface TrelloCardAction {
       id: string;
       name: string;
     };
+    board: {
+      id: string;
+      name: string;
+      shortLink: string;
+    };
   };
+  memberCreator: TrelloMember;
 }
 
 export interface TrelloCard {
@@ -30,7 +36,6 @@ export interface TrelloCard {
   idMembers: string[];
   labels: TrelloLabel[];
   shortUrl: string;
-  actions?: TrelloCardAction[];
 }
 
 export interface TrelloMember {
@@ -49,30 +54,3 @@ export interface TrelloBoard {
   cards: TrelloCard[];
   members: TrelloMember[];
 }
-
-export type ProcessedTrelloCardAction = Merge<
-  ExcludeKeyFromType<TrelloCardAction, "idMemberCreator">,
-  {
-    memberCreator: TrelloMember;
-  }
->;
-
-export type ProcessedTrelloCard = Merge<
-  ExcludeKeyFromType<TrelloCard, "idMembers" | "actions">,
-  {
-    members: TrelloMember[];
-    actions?: [ProcessedTrelloCardAction];
-    estimated?: number;
-    consumed?: number;
-  }
->;
-
-export type ProcessedTrelloBoard = Merge<
-  TrelloBoard,
-  {
-    cards: ProcessedTrelloCard[];
-    cardsPerUser: {
-      [key: string]: ProcessedTrelloCard[];
-    };
-  }
->;

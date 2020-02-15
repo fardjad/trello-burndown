@@ -1,15 +1,15 @@
 import os from "os";
 import cluster from "cluster";
 import { start } from "./worker";
-import { normalizePort } from "./services/utils";
+import { normalizePort } from "./services/port-utils";
 import logger from "./services/logger";
 
-const CPU_COUNT = os.cpus().length;
+const WORKER_COUNT = os.cpus().length;
 const HOST = process.env.HOST || "localhost";
 const PORT = normalizePort(process.env.PORT, 3000);
 
 if (cluster.isMaster) {
-  for (let i = 0; i < CPU_COUNT; i += 1) {
+  for (let i = 0; i < WORKER_COUNT; i += 1) {
     const worker = cluster.fork();
     worker.on("exit", (code, signal) => {
       if (signal) {
