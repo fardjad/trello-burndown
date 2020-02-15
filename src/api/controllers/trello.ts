@@ -15,11 +15,7 @@ const storeActions = async (action: TrelloCardAction[]) => {
     action.map(action => Member.insertOrReplace(action.memberCreator))
   );
 
-  return Promise.all(
-    action
-      .filter(action => action.data.old?.name != null)
-      .map(action => Action.insertOrReplace(action))
-  );
+  return Promise.all(action.map(action => Action.insertOrReplace(action)));
 };
 
 export const syncBoard = recoverable(

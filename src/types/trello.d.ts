@@ -11,9 +11,6 @@ export interface TrelloCardAction {
   type: "createCard" | "updateCard";
   date: string;
   data: {
-    old?: {
-      name?: string;
-    };
     card: {
       id: string;
       name: string;

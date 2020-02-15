@@ -76,7 +76,7 @@ class TrelloClient {
   ) {
     const searchParams: SearchParams = {
       limit: TRELLO_ACTIONS_LIMIT,
-      filter: ["createCard", "updateCard"].join(",")
+      filter: "all"
     };
 
     if (options?.before) {
@@ -87,13 +87,15 @@ class TrelloClient {
       searchParams.since = options.since;
     }
 
-    const actions: TrelloCardAction[] = await this.got
+    const actions: any[] = await this.got
       .get(`${this.baseUrl}/1/board/${boardId}/actions`, {
         searchParams
       })
       .json();
 
-    return actions;
+    return actions.filter(
+      action => action.data.card?.name != null
+    ) as TrelloCardAction[];
   }
 }
 

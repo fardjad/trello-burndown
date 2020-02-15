@@ -38,7 +38,6 @@ CREATE TABLE `card_member` (
 CREATE TABLE `action` (
   `id` varchar(255) NOT NULL,
   `member_id` varchar(255) NOT NULL,
-  `old_name` text,
   `name` text NOT NULL,
   `type` text NOT NULL,
   `date` datetime NOT NULL,
