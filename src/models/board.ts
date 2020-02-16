@@ -19,8 +19,8 @@ export const findById = async (boardId: string) => {
   return db.get("SELECT * FROM `board` WHERE id = ?", boardId);
 };
 
-export const findAll = async (boardId: string) => {
+export const findAll = async () => {
   const db = await dbPromise;
 
-  return db.get("SELECT * FROM `board`");
+  return db.all("SELECT * FROM `board`");
 };

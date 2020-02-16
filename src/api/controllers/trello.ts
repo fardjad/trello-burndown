@@ -82,3 +82,18 @@ export const getBoard = recoverable(
     res.json(board);
   }
 );
+
+export const listBoards = recoverable(
+  defer => async (req: Request, res: Response, next: NextFunction) => {
+    defer(recover => {
+      const err = recover();
+      if (err) {
+        next(err);
+      }
+    });
+
+    const boards = await Board.findAll();
+
+    res.json(boards);
+  }
+);
